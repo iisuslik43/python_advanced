@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1500px;
+            height: 800px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": 0, "label": "FunctionDef \"top_fibonacci_numbers\"", "shape": "dot"}, {"id": 1, "label": "arguments", "shape": "dot"}, {"id": 2, "label": "arg \"n\"", "shape": "dot"}, {"id": 3, "label": "Assign", "shape": "dot"}, {"color": "red", "id": 4, "label": "Name \"numbers\"", "shape": "dot"}, {"id": 5, "label": "List", "shape": "dot"}, {"color": "black", "id": 6, "label": "Constant \"0\"", "shape": "dot"}, {"color": "black", "id": 7, "label": "Constant \"1\"", "shape": "dot"}, {"id": 8, "label": "For", "shape": "dot"}, {"color": "red", "id": 9, "label": "Name \"_\"", "shape": "dot"}, {"color": "pink", "id": 10, "label": "Call", "shape": "dot"}, {"color": "red", "id": 11, "label": "Name \"range\"", "shape": "dot"}, {"color": "orange", "id": 12, "label": "BinOp \"Sub\"", "shape": "dot"}, {"color": "red", "id": 13, "label": "Name \"n\"", "shape": "dot"}, {"color": "black", "id": 14, "label": "Constant \"2\"", "shape": "dot"}, {"id": 15, "label": "Expr", "shape": "dot"}, {"color": "pink", "id": 16, "label": "Call", "shape": "dot"}, {"id": 17, "label": "Attribute \"append\"", "shape": "dot"}, {"color": "red", "id": 18, "label": "Name \"numbers\"", "shape": "dot"}, {"color": "orange", "id": 19, "label": "BinOp \"Add\"", "shape": "dot"}, {"color": "grey", "id": 20, "label": "Subscript", "shape": "dot"}, {"color": "red", "id": 21, "label": "Name \"numbers\"", "shape": "dot"}, {"color": "green", "id": 22, "label": "UnaryOp \"USub\"", "shape": "dot"}, {"color": "black", "id": 23, "label": "Constant \"1\"", "shape": "dot"}, {"color": "grey", "id": 24, "label": "Subscript", "shape": "dot"}, {"color": "red", "id": 25, "label": "Name \"numbers\"", "shape": "dot"}, {"color": "green", "id": 26, "label": "UnaryOp \"USub\"", "shape": "dot"}, {"color": "black", "id": 27, "label": "Constant \"2\"", "shape": "dot"}, {"id": 28, "label": "Return", "shape": "dot"}, {"color": "grey", "id": 29, "label": "Subscript", "shape": "dot"}, {"color": "red", "id": 30, "label": "Name \"numbers\"", "shape": "dot"}, {"id": 31, "label": "Slice", "shape": "dot"}, {"color": "red", "id": 32, "label": "Name \"n\"", "shape": "dot"}]);
+        edges = new vis.DataSet([{"from": 1, "to": 0}, {"from": 2, "to": 1}, {"from": 3, "to": 0}, {"from": 4, "to": 3}, {"from": 5, "to": 3}, {"from": 6, "to": 5}, {"from": 7, "to": 5}, {"from": 8, "to": 0}, {"from": 9, "to": 8}, {"from": 10, "to": 8}, {"from": 11, "to": 10}, {"from": 12, "to": 10}, {"from": 13, "to": 12}, {"from": 14, "to": 12}, {"from": 15, "to": 8}, {"from": 16, "to": 15}, {"from": 17, "to": 16}, {"from": 18, "to": 17}, {"from": 19, "to": 16}, {"from": 20, "to": 19}, {"from": 21, "to": 20}, {"from": 22, "to": 20}, {"from": 23, "to": 22}, {"from": 24, "to": 19}, {"from": 25, "to": 24}, {"from": 26, "to": 24}, {"from": 27, "to": 26}, {"from": 28, "to": 0}, {"from": 29, "to": 28}, {"from": 30, "to": 29}, {"from": 31, "to": 29}, {"from": 32, "to": 31}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
