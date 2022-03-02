@@ -1,0 +1,6 @@
+Synchronized:
+4.1681 seconds
+Threading:
+4.396841000000001 seconds
+Multiprocessing:
+0.055140999999998996 seconds
