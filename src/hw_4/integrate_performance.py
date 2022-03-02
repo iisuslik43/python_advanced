@@ -25,6 +25,7 @@ def integrate(f, a, b, *, n_jobs=1, n_iter=1000, pool_executor_class=ThreadPoolE
 
     with_log = ExecuteWithLog(f)
     values = executor.map(with_log.execute_f, points)
+
     return sum(values) * step
 
 
