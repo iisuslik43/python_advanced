@@ -20,7 +20,7 @@ class ExecuteWithLog:
 
 def integrate(f, a, b, *, n_jobs=1, n_iter=1000, pool_executor_class=ThreadPoolExecutor):
     step = (b - a) / n_iter
-    points = [a + i * step for i in range(n_iter)]
+    points = [(f, a + i * step) for i in range(n_iter)]
     executor = pool_executor_class(max_workers=n_jobs)
 
     with_log = ExecuteWithLog(f)
@@ -31,7 +31,7 @@ def integrate(f, a, b, *, n_jobs=1, n_iter=1000, pool_executor_class=ThreadPoolE
 def measure_time(n_jobs, pool_executor_class):
     t = time.process_time()
     logging.info(pool_executor_class.__name__)
-    res = integrate(math.cos, 0, math.pi / 2, n_jobs=10, pool_executor_class=ThreadPoolExecutor)
+    res = integrate(math.cos, 0, math.pi / 2, n_jobs=10, pool_executor_class=pool_executor_class)
     logging.info(res)
     passed_time = time.process_time() - t
     return f'{pool_executor_class.__name__} with {n_jobs} jobs - {passed_time} seconds'
