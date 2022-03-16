@@ -4,3 +4,5 @@ build
 twine
 pdflatex
 imgkit
+aiohttp
+aiofiles
